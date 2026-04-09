@@ -6,14 +6,14 @@ import os
 import sqlite3
 
 # Add scripts folder to path so Airflow can find our modules
-sys.path.append('/workspaces/podcast_pipeline_project/scripts')
+sys.path.append('/workspaces/Automated-Podcast-Downloader-Pipeline/scripts')
 
 from extract import fetch_and_store_episodes
 from transform import clean_metadata
 from load import download_new_episodes
 
-DB_PATH = '/workspaces/podcast_pipeline_project/data/podcast_metadata.db'
-DOWNLOAD_PATH = '/workspaces/podcast_pipeline_project/data/audio/'
+DB_PATH = '/workspaces/Automated-Podcast-Downloader-Pipeline/data/audio/podcast_metadata.db'
+DOWNLOAD_PATH = '/workspaces/Automated-Podcast-Downloader-Pipeline/data/audio/'
 RSS_URL = 'https://podcasts.files.bbci.co.uk/p02nq0gn.rss'
 
 default_args = {
