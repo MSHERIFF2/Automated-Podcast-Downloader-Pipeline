@@ -13,7 +13,7 @@ from transform import clean_metadata
 from load import download_new_episodes
 
 DB_PATH = '/workspaces/Automated-Podcast-Downloader-Pipeline/data/audio/podcast_metadata.db'
-DOWNLOAD_PATH = '/workspaces/Automated-Podcast-Downloader-Pipeline/data/audio/'
+DOWNLOAD_PATH = '/workspaces/Automated-Podcast-Downloader-Pipeline/data/audio'
 RSS_URL = 'https://podcasts.files.bbci.co.uk/p02nq0gn.rss'
 
 default_args = {
