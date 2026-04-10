@@ -22,5 +22,4 @@ def fetch_and_store_episodes(rss_url, db_path):
     conn.commit()
     conn.close()
     print(f"Extracted {count} episodes.")
-podcast_pipeline_project/scripts/extract.py
-Displaying podcast_pipeline_project/scripts/extract.py.
+

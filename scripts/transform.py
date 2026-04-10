@@ -9,5 +9,3 @@ def clean_metadata(db_path):
     conn.commit()
     conn.close()
     print("Metadata transformed/cleaned.")
-podcast_pipeline_project/scripts/transform.py
-Displaying podcast_pipeline_project/scripts/transform.py.

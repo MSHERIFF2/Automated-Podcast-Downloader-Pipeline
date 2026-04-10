@@ -41,7 +41,7 @@ def init_db():
 with DAG(
     'podcast_etl_modular',
     default_args=default_args,
-    schedule_interval='@daily',
+    schedule='@daily',
     catchup=False,
 ) as dag:
 
