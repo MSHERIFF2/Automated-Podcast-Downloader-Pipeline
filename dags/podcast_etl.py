@@ -54,22 +54,22 @@ with DAG(
         python_callable=init_db
     )
 
-    extract = PythonOperator(
+    extract_task = PythonOperator(
         task_id="extract_episodes",
         python_callable=fetch_and_store_episodes,
         op_kwargs={"rss_url": RSS_URL, "db_path": DB_PATH}
     )
 
-    transform = PythonOperator(
+    transform_task = PythonOperator(
         task_id="transform_metadata",
         python_callable=clean_metadata,
         op_kwargs={"db_path": DB_PATH}
     )
 
-    load = PythonOperator(
+    load_task = PythonOperator(
         task_id="download_audio",
         python_callable=download_new_episodes,
         op_kwargs={"db_path": DB_PATH, "download_path": DOWNLOAD_PATH}
     )
 
-    setup >> extract >> transform >> load
+    setup >> extract_task >> transform_task >> load_task
