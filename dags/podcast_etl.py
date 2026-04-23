@@ -3,6 +3,9 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime
 import sys
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(BASE_DIR, "scripts"))
@@ -17,12 +20,14 @@ RSS_URL = 'https://podcasts.files.bbci.co.uk/p02nq0gn.rss'
 
 default_args = {
     "owner": "airflow",
-    "start_date": datetime(2024, 1, 1),
-    "retries": 1
+    "start_date": datetime(2026, 4, 23),
+    "retries": 2,
+    "retry_delay_seconds": 60
 }
 
 def init_db():
     import sqlite3
+    logger.info(f"Initializing database at {DB_PATH}")
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 
     conn = sqlite3.connect(DB_PATH)
@@ -40,6 +45,7 @@ def init_db():
 
     conn.commit()
     conn.close()
+    logger.info("Database initialized successfully")
 
 
 with DAG(

@@ -1,4 +1,7 @@
 import sqlite3
+import logging
+
+logger = logging.getLogger(__name__)
 
 def clean_metadata(db_path):
     conn = sqlite3.connect(db_path)
@@ -12,4 +15,4 @@ def clean_metadata(db_path):
     conn.commit()
     conn.close()
 
-    print("Metadata cleaned")
+    logger.info("Metadata cleaned successfully")

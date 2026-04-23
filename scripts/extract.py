@@ -1,5 +1,8 @@
 import feedparser
 import sqlite3
+import logging
+
+logger = logging.getLogger(__name__)
 
 def fetch_and_store_episodes(rss_url, db_path):
     feed = feedparser.parse(rss_url)
@@ -8,7 +11,7 @@ def fetch_and_store_episodes(rss_url, db_path):
 
     count = 0
 
-    for entry in feed.entries:
+    for entry in feed.entries[:10]:
         try:
             audio_link = entry.links[1].href
 
@@ -24,4 +27,4 @@ def fetch_and_store_episodes(rss_url, db_path):
     conn.commit()
     conn.close()
 
-    print(f"Extracted {count} episodes")
+    logger.info(f"Successfully extracted {count} episodes from {rss_url}")

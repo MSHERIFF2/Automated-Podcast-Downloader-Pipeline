@@ -1,6 +1,9 @@
 import os
 import sqlite3
 import requests
+import logging
+
+logger = logging.getLogger(__name__)
 
 def download_new_episodes(db_path, download_path):
     conn = sqlite3.connect(db_path)
@@ -31,7 +34,8 @@ def download_new_episodes(db_path, download_path):
             """, (ep_id,))
 
         except Exception as e:
-            print(f"Failed: {file_name} -> {e}")
+            logger.error(f"Failed to download {file_name}: {e}")
 
     conn.commit()
     conn.close()
+    logger.info(f"Download task completed. Total episodes processed: {len(rows)}")
