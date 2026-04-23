@@ -4,15 +4,15 @@ from datetime import datetime
 import sys
 import os
 
-# add scripts folder
-sys.path.append('/home/your-user/Automated-Podcast-Downloader-Pipeline/scripts')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(BASE_DIR, "scripts"))
 
 from extract import fetch_and_store_episodes
 from transform import clean_metadata
 from load import download_new_episodes
 
-DB_PATH = '/home/your-user/Automated-Podcast-Downloader-Pipeline/data/audio/podcast.db'
-DOWNLOAD_PATH = '/home/your-user/Automated-Podcast-Downloader-Pipeline/data/audio'
+DB_PATH = os.path.join(BASE_DIR, "data", "audio", "podcast.db")
+DOWNLOAD_PATH = os.path.join(BASE_DIR, "data", "audio")
 RSS_URL = 'https://podcasts.files.bbci.co.uk/p02nq0gn.rss'
 
 default_args = {
